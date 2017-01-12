@@ -10,3 +10,8 @@ def open(path, *args, **kwargs):
     f = open(path, *args, **kwargs)
     yield f
     f.close()
+
+
+def readfile(path):
+    with open(path, mode='r') as f:
+        return f.read()
