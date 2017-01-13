@@ -22,6 +22,6 @@ def open(path, *args, **kwargs):
         f.close()
 
 
-def readfile(path):
-    with open(path, mode='r') as f:
+def readfile(path, *args, **kwargs):
+    with open(path, *args, **kwargs) as f:
         return f.read()
