@@ -1,2 +1,5 @@
 *~
 /build/
+MANIFEST
+/dist/
+/src/gdo/__pycache__/

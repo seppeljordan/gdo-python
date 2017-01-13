@@ -2,14 +2,22 @@
 
 import contextlib
 import subprocess
+import sys
 
+
+def target():
+    return sys.argv[3]
+
+oldopen = open
 
 @contextlib.contextmanager
 def open(path, *args, **kwargs):
     subprocess.call(['gdo','--if','Changed',path])
-    f = open(path, *args, **kwargs)
-    yield f
-    f.close()
+    try:
+        f = oldopen(path, *args, **kwargs)
+        yield f
+    finally:
+        f.close()
 
 
 def readfile(path):
