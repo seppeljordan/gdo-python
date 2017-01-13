@@ -12,7 +12,9 @@ oldopen = open
 
 @contextlib.contextmanager
 def open(path, *args, **kwargs):
-    subprocess.call(['gdo','--if','Changed',path])
+    code = subprocess.call(['gdo','--if','Changed',path])
+    if code != 0:
+        exit(1)
     try:
         f = oldopen(path, *args, **kwargs)
         yield f
