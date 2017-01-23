@@ -10,11 +10,22 @@ def target():
 
 oldopen = open
 
-@contextlib.contextmanager
-def open(path, *args, **kwargs):
-    code = subprocess.call(['gdo','--if','Changed',path])
+
+def if_changed(targets):
+    subprocess.call(['gdo','--if','Changed']+targets)
     if code != 0:
         exit(1)
+
+
+def if_created(targets):
+    subprocess.call(['gdo','--if','Created']+targets)
+    if code != 0:
+        exit(1)
+
+
+@contextlib.contextmanager
+def open(path, *args, **kwargs):
+    if_changed([path])
     try:
         f = oldopen(path, *args, **kwargs)
         yield f

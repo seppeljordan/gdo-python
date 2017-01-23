@@ -4,7 +4,7 @@ from distutils.core import setup
 
 setup(
     name='gdo-python',
-    version='1.3.0',
+    version='1.4.0',
     description='Utility for building applications with gdo in python(3)',
     author='Sebastian Jordan',
     author_email='jordan@schneevonmorgen.com',
